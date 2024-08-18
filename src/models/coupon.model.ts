@@ -1,29 +1,20 @@
 export interface IRepeatCountLimit {
   globalUsageLimit: number;
-  userUsageLimit?: number;
-  userPerDayUsageLimit?: number;
-  userPerWeekUsageLimit?: number;
-  userPerMonthUsageLimit?: number;
+  userUsageLimit: number;
+  userPerDayUsageLimit: number;
+  userPerWeekUsageLimit: number;
 }
 
 export interface ICouponModel {
   code: string;
-  repeatCountLimit: IRepeatCountLimit;
+  repeatCountsLimit: IRepeatCountLimit;
   globalUsageCount: number;
 }
 
-export class Coupon {
+class Coupon {
   private coupons: Map<string, ICouponModel> = new Map();
 
-  public add(code: string, usageLimit: number): void {
-    const coupon: ICouponModel = {
-      code,
-      repeatCountLimit: {
-        globalUsageLimit: usageLimit,
-      },
-      globalUsageCount: 0,
-    };
-
+  public add(code: string, coupon: ICouponModel): void {
     this.coupons.set(code, coupon);
   }
 
@@ -33,7 +24,6 @@ export class Coupon {
 
   public update(code: string, coupon: ICouponModel): ICouponModel | undefined {
     this.coupons.set(code, coupon);
-
     return this.coupons.get(code);
   }
 
@@ -43,6 +33,12 @@ export class Coupon {
 
     return coupon;
   }
+
+  public getAllCoupons(): ICouponModel[] {
+    return Array.from(this.coupons.values());
+  }
 }
 
-export default new Coupon();
+const couponModel = new Coupon();
+
+export default couponModel;

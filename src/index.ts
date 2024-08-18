@@ -1,12 +1,12 @@
 import express from "express";
+import couponRoutes from "./routes/couponRoutes";
 
 const app = express();
+app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("TypeScript with Node.js!");
-});
+app.use("/api", couponRoutes);
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
