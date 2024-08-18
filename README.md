@@ -16,14 +16,9 @@ This project implements a Coupon Code Service using Node.js and TypeScript. The 
   - [Validate a Coupon](#validate-a-coupon-with-curl)
   - [Apply a Coupon](#apply-a-coupon-with-curl)
 
+#### I have written all Trade-offs and Scalability Challenges in NOTES.md file.
+
 ## Project Setup
-
-### Prerequisites
-
-Ensure you have the following installed:
-
-- [Node.js](https://nodejs.org/en/) (v14 or higher)
-- [npm](https://www.npmjs.com/) (v6 or higher)
 
 ### Installation
 
@@ -31,7 +26,7 @@ Ensure you have the following installed:
 
    ```bash
    git clone https://github.com/yourusername/coupon-code-service.git
-   cd coupon-code-service
+   cd vertexcover-task
    ```
 
 2. Install dependencies:
@@ -65,22 +60,22 @@ npm start
 
 ### API Endpoints
 
-#### 1. Add a Coupon
+#### 1. Add Coupon Repeat Counts
 
-- **Endpoint:** `POST /api/coupons`
+- **Endpoint:** `POST /api/addCouponRepeatCounts`
 - **Description:** Add a new coupon with repeat count limits.
 
 - **Request Body:**
 
   ```json
   {
-    "couponCode": "SUMMER21",
-    "repeatCountsLimit": {
+    "code": "SUMMER21",
+
+    "repeatCountConfig": {
       "globalUsageLimit": 10000,
       "userUsageLimit": 5,
       "userPerDayUsageLimit": 1,
-      "userPerWeekUsageLimit": 2,
-      "userPerMonthUsageLimit": 4
+      "userPerWeekUsageLimit": 2
     }
   }
   ```
@@ -159,7 +154,7 @@ Will implement test cases if given more time
 
 ### API Testing with curl
 
-Generating 00 users for testing.
+Generating 10 users for testing.
 
 #### Add a Coupon with curl
 
